@@ -4,8 +4,57 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Person liste</title>
+    <title>Person liste nu med grid</title>
     <link rel="stylesheet" href="">
+
+    <style>
+        /*billededts størrelse*/
+        img {
+            width: 200px;
+            height: auto;
+            float: left;
+
+        }
+
+        article {
+            clear: both;
+            border: 2px solid black;
+
+        }
+
+
+        /*        her sættes farven på hvert anden via nth-child og odd*/
+        article:nth-child(odd) {
+            background: lime;
+        }
+
+
+        /* visning i html for classen .dyr*/
+        section {
+            display: grid;
+            grid-gap: 10px;
+            border: 2px solid #ccc;
+            padding: 10px;
+
+        }
+
+        /* her er siden gjort repsonsiv ved at indstille størrelses forhold for classen dyr når den er i mobile-first*/
+        @media screen and (min-width: 480px) {
+
+            section {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (min-width: 700px) {
+
+            section {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+
+
 </head>
 
 <body>
@@ -14,6 +63,7 @@
     <template class="data-template">
         <article>
             <h2></h2>
+            <img class="data-billede" src="" alt="">
             <p class="data-github"> </p>
             <p class="data-website"> </p>
             <a class="data-mail" href=""> Mail </a>
@@ -24,8 +74,8 @@
             <a class="data-facebook" href=""> Facebook </a>
             <p class="data-hobby"> </p>
             <p class="data-sex"> </p>
-            <p class="data-billede"> </p>
-            <img src="" alt="">
+
+
 
 
 
@@ -67,6 +117,7 @@
                 // giver os indholdet af <article>
                 let klon = temp.cloneNode(true).content;
                 //indsætter data i html'en
+                klon.querySelector("img").src = person.billede;
                 klon.querySelector("h2").textContent = person.navn;
                 klon.querySelector(".data-github").textContent = person.github;
                 klon.querySelector(".data-website").textContent = person.website;
@@ -77,7 +128,7 @@
                 klon.querySelector(".data-facebook").href = person.facebook;
                 klon.querySelector(".data-hobby").textContent = person.hobby;
                 klon.querySelector(".data-sex").textContent = person.sex;
-                klon.querySelector("img").src = person.billede;
+
 
 
                 //placere klon i html, altså klon bliver sat ind i modtager.
@@ -90,7 +141,6 @@
 
 
         }
-
     </script>
 </body>
 
